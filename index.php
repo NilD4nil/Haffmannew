@@ -3,7 +3,8 @@ require 'autoload.php';
 if (!empty($_POST['message'])){
     $text = $_POST['message'];
     $coder = new Coder($text);
-    $coder -> encode();
+    $encode = $coder -> encode();
+    $decode = $coder -> decode($encode);
 }
 ?>
 <form method="post">
@@ -12,3 +13,10 @@ if (!empty($_POST['message'])){
     <textarea name="message" id="textarea"></textarea>
     <input type="submit" value="Отправить">
 </form>
+<div>
+    <?= (!empty($encode)) ? $encode : ''; ?>
+    <br>
+    <?= (!empty($decode)) ? $decode : ''; ?>
+    <br>
+    <?= (!empty($encode)) ? $coder -> get_table() : ""; ?>
+</div>
